@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 101, Attributes Loops and AJAX</title>
+</head>
+<body>
+    <ul>
+        <li>FIRST</li>
+        <li>SECOND</li>
+        <li>THIRD</li>
+        <li>FOURTH</li>
+
+    </ul>
+    <br>
+    <br>
+    <input type="text">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+        /* jQuery Each Loops */
+        /*****************************************
+         .each requires two parameters
+            1) index
+            2) element
+            *************************************/
+            $("li").each(function(index, element){
+                const originalText = $(element).text()
+                $(element).text(`${index+1}. ${originalText}`);
+                if(index === 2){
+                    $(element)
+                        .css("background-color", "black")
+                        .css("color", "white")
+                        .css("font-style", "italic")
+                }
+            })
+        /* Changing Attributes */
+            const $input = $("input");
+            console.log($input.attr("type"));
+            $input.attr("type","password");
+        /* Ajax GET Requests */
+            $.get('https://swapi.dev/api/people/1', function(data){
+                console.log(data['name']);
+                console.log(data['height']+' cms');
+                console.log(data['mass']+' kgs');
+            })
+        /* Ajax POST Requests */
+            //$.post(url,data,function(data))
+            $.post(
+                'https://httpbin.org/post', 
+                {"Hello": "World"}, 
+                function(data){
+                    console.log("Post was complete with this data:");
+                    console.log(data);
+            })
+        
+        })
+        
+    </script>
+</body>
+</html>

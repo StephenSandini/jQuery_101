@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 101, CSS</title>
+    <style>
+        .square{
+            width: 100px;
+            height: 100px;
+            background-color: tomato;
+            padding: 20px;
+            margin: 20px;
+        }
+        .blue{
+            background-color: blue;
+        }
+        .width-100{
+            width:100%;
+        }
+        .squareTWO{
+            width: 100px;
+            height: 100px;
+            background-color: tomato;
+        }
+    </style>
+</head>
+<body>
+    <!-- <input type="text"> -->
+    <div class="square"></div>
+    <br>
+    <br>
+    <button id="add">Add Class</button>
+    <button id="remove">Remove Class</button>
+    <button id="toggle_blue">Toggle Blue</button>
+    <button id="display">Change Display</button>
+    <button id="slide">Slide Square</button>
+    <button id="callback">Callback</button>
+    <button id="animate">Animate</button>
+    <div class="squareTWO"></div>
+
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
+
+    <script>
+        /*Adding CSS Classes*/
+        $(document).ready(function(){
+
+            const $square =$(".square");
+
+            $("#add").on("click", ()=> {
+                $(".square").addClass("blue width-100");
+            })
+          
+          
+            
+        
+        /*Removing CSS Classes*/
+        $("#remove").on("click", ()=> {
+                $(".square").removeClass("blue width-100");
+            })
+        /*Toggling CSS Classes*/
+        $square.toggleClass("blue")
+            $("input").on("keyup", function() {
+                const value = $(this).val();
+                if(value ==="true"){
+                    $square.addClass("blue");
+                } else {
+                    $square.removeClass("blue");
+                }
+            })
+        /*Adding Custom CSS*/
+        $(".square")
+        /*************************************** 
+                CSS Individual
+            .css("background-color", "red")
+            .css("border", "10px solid black")
+            .css("border-radius", "50%")
+        ***************************************/
+            .css({
+                backgroundColor: "yellow",
+                border:"10px solid red",
+                borderRadius: "10px",
+            })
+        /*Fading In and Fading Out*/
+        /****************************
+        Performed in Console with creating
+            const $square = $(".square")
+            $square.fadeIn()
+            $square.fadeOut()
+            $square.fadeIn(5000) //Or whatever time duration you want
+        *****************************/
+        /*Toggling Fades and Displays*/
+        $("#display").on("click", function() {
+            //$(".square").fadeToggle();//Uses Fade In and Fade Out
+            $(".square").toggle(); //Uses Hide and Show
+
+        })
+        /*Slide up and Down*/
+        $("#slide").on("click", function() {
+            $(".square").slideToggle();
+        })
+        /*Callback Functions*/
+        $("#callback").on("click", function(){
+            $(".square").fadeToggle(1500, function(){
+                console.log("Fade Completed");
+            })
+        })
+        /*jQuery Animations*/
+        $("#animate").on("click", function(){
+            $(".squareTWO").animate({
+                opacity: 0,
+                width: "500px",
+                borderRadius: "100px"
+            }, 3000)
+        })
+        /*Width Dimensions
+        ************************
+        const $square = $(".square")
+        $square.width()
+        $square.height()
+        $square.outerWidth()
+        $square.innerWidth()
+        *************************
+        HANDY
+        $(window).width()
+        $(window).height()*/
+
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 101, SELECTORS</title>
+
+</head>
+<body>
+    
+    <h1 class ="customClassName" id="customId">
+        Hello World
+    </h1>
+    
+    <h2> Our custom TITLE 1</h2>
+    
+
+    <h2> Our custom TITLE 2</h2>
+    
+
+    <button class="custom-class">This is a custom button</button>
+    
+
+    <p class="custom-class">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus aliquam, deserunt perspiciatis sunt cumque, tempore soluta blanditiis 
+        facere dignissimos omnis odio quod cum modi? Beatae, architecto. Perferendis hic eum sequi?
+    </p>
+    
+
+    <p id="customId2">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque quia natus quaerat accusantium cupiditate distinctio consectetur dolorum nostrum, 
+        voluptatibus, impedit dolor libero necessitatibus. Nihil atque neque amet totam itaque expedita?
+    </p>
+    
+
+    <div id="customId3"></div>
+    
+    
+
+    <input type="text" value="Type Here">
+    
+
+    <section>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime, consequatur, non ut error rem est nesciunt odio dignissimos hic pariatur illo debitis commodi sit deleniti exercitationem maiores, explicabo esse. Ex.</section>
+    
+
+    <h3>
+            QUE?
+    </h3>
+    
+
+    <div id="target">
+        Add HTML before and after this
+    </div>
+    <div id="parent"> <!-- Parent Element-->
+        <strong>BOLDED WORD</strong>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat, odit numquam ex magnam dolores a similique est ducimus id dolorem, minus consectetur impedit commodi error vel quo, dolorum aperiam suscipit.</p>
+    </div>
+
+    
+    
+    <!-- Utilizes caching, so increased speed but may require user to clear cache to see changes of features to site-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
+    
+    <script>
+        /*///////////////////////
+        //  Notes of Syntax  //
+        ////////////////////////
+        jQuery Selector $("") == JavaScript document.querySelector("")
+        .event() == method or function
+        .event(function(){ }) will be an anonymous callback function
+        */
+       
+       $(document).ready(function(){
+            console.log("jQuery is loaded!")
+            //This executes individual lines at a time
+            //Selectors are more of a CSS thing than a JS or jQuery
+            
+            //Changing text by using Custom Class
+            $("h1.customClassName").text("This was changed via jQuery!");
+            
+            //Changing multiple tags text
+            $("h2, p").text("Changed via jQuery #2");
+            
+            //Changin HTML by using Custom Class
+            $("p.custom-class").html("<strong>Changed via jQuery #3</strong>");
+            
+            //Changing text by using Custom Id
+            $("#customId2").text("Changed AGAIN #4")
+            
+            //Changing HTML by using Custom Id
+            $("#customId3").html("<h1>PEACE AMONG WORLDS!</h1>");
+            
+            /*How to gather what is being passed as input values
+            const value = $("input").val();
+            console.log(value); */
+            $("input").val("this is changed");
+            
+            /*How to gather what is in the text
+            const text = $("section").text()
+            console.log(text); */
+            $("section").text("WHAT was here?");
+            
+            /* How to add to and add before a specific tag*/
+            $("h3")
+                .text(" This is changed TEXT ")
+                .append("<b>This is bold of YOU!? #5</b>")
+                .prepend("<i>This is bold of YOU! #5</i>");
+            
+            /*How to add to before and after a specific tag*/
+            $("div#target")
+                .before("<h3>Hello world this is a title #before</h3>")
+                .after("<p>This is a paragraph #after</p>");
+            
+            /*To kill the children*/
+            $("div#parent").empty().html("Deleted");
+            
+        
+            
+
+        })
+    </script>
+    
+</body>
+</html>

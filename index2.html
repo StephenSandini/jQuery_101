@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 101, EVENTS</title>
+    <style> 
+        #box {
+            width: 200px;
+            height: 200px;
+            background-color:aquamarine;
+        }
+        #box:hover{
+            background-color: blueviolet;
+        }
+        .input{
+            padding-left: 50px;
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+        #square{
+            width:100px;
+            height: 100px;
+            background-color: tomato;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+
+    <div id="box"></div>
+    <br>
+    <br>
+
+    <span>
+        <input type="text" id="input" class="select-me" value="Hello world">
+        <input type="text" id="input" class="select-me" value="Type in here">
+    </span>
+
+    <br>
+    <br>
+
+    <span>
+        <button id="input" class="custom-class">This is a custom button</button>
+    </span>
+
+    <br>
+    <br>
+
+    <span>
+        <textarea id="input" name="my-textarea" id="" cols="25" rows="25"></textarea>
+    </span>
+    <br>
+    <br>
+
+    <span>
+        <input type="text" id="blur" value="Blur">
+    </span>
+    <br>
+    <br>
+    <form>
+        <input type="text" name="name" placeholder="Your name">
+        <button type="submit" class="sub-form">Submit this form</button>
+    </form>
+    <br>
+    <br>
+    <button id="hideme">Hide Element</button>
+    <div id="square"></div>
+    <button id="resize">Resize</button>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            //jQuery Here
+
+            /* Event Listeners*/
+            /* Method 1
+            $("button").click(function(){
+                console.log("CLICKED!");
+            })*/
+            /*Method 2*/
+            $("button").on("click",function(){
+                console.log("CLICKED!");
+            })
+            /*Method 3 (Dynamic Programming)
+            *NOTE: When things like buttons are added through jQuery/after the fact
+            $(document).on("click","button",function(){
+                console.log("CLICKED!");
+            })*/
+            /*Hover Events*/
+            $("#box")
+                .on("mouseenter",function(){
+                console.log("Moved IN");
+                })
+                .on("mouseleave",function(){
+                console.warn("Moved OUT");
+                })
+            /*Keyup Events*/
+            $(".select-me").on("keyup", function() {
+                console.log($(this).val());
+                // const $input = $(".select-me")
+                // console.log("You pressed the key" + $input.val());
+            })
+            /*Focus Events*/
+            $("[name='my-textarea']").on("focus", function(){
+                console.log("Textarea Focus");
+            })
+            /*Blur Events*/
+            $("#blur").on("blur", function(){
+                console.log("BLURRED!");
+                console.log($(this).val())
+            })
+            /* Form Submit Events */
+            /*  Prevents it from submitting to index.html
+                from appearing in addressbar
+            $("form").on("submit",function(event){
+                event.preventDefault(); //Prevents it to submit to the index.html
+                console.log("Not submitted");
+            })*/
+            $(".sub-form").on("click",function(event){
+                event.preventDefault();
+                console.log("Button is rendered useless");
+            })
+            /*Hiding Elements*/
+            $("#hideme").on("click", function(e){
+                e.preventDefault();
+                $("#square").hide();
+                //$("#hideme").html(`<button id="showme">Show Element</button>`)
+            })
+            /*Showing Elements*/
+            $("#showme").on("click", function(e){
+                e.preventDefault();
+                $("#square").show();
+                //$("#showme").html(`<button id="hideme">Hide Element</button>`)
+
+            })
+            /*Resizing Window Event*/
+            $(window).on("resize",function(){
+                console.log($(window).width(), 'x', $(window).height())
+                if($(window).width() <= 230){
+                    $("body").css("background-color","black");
+                } else{
+                    $("body").css("background-color","white");
+                }
+                if($(window).height() <=160){
+                    console.log("TOO SMALL");
+                }
+            })
+           
+        })
+    </script>
+    
+</body>
+</html>
